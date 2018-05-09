@@ -1,0 +1,93 @@
+<div class="{{item.type}} d-flex flex-column" *ngIf="item" style="width:100vw;height:100vh;overflow:auto">
+  <div class="d-flex flex-row align-items-center border-bottom title">
+      <i class="far fa-arrow-alt-circle-left ml-3" (click)="goBack()"></i>
+      <div class="text-center py-3" style="flex:1;">
+        {{ item.orderKey }}
+    </div>
+  </div>
+  
+  
+
+  <div style="flex:1;overflow:auto;">
+
+    <div class="details-area" *ngIf="item.type === 'books'">
+      <div>
+        {{item.name}} is written by {{ item.authors.join(', ') }} and published by {{ item.publisher }} in {{ item.country }}.
+      </div>
+      <div>
+        The book is released on <b>{{ item.released | date }}</b>.
+      </div>
+      <div>
+        It contains <b>{{ item.numberOfPages }} pages</b> and revolves around <b>{{ item.characters.length }} characters</b>.
+      </div>
+    </div>
+
+    <div class="details-area" *ngIf="item.type === 'characters'">
+      <div>
+        {{item.name}} is {{ item.gender }} character in A Game of Thrones, book series.
+      </div>
+      <div *ngIf="item.culture">
+        {{ item.pronoun }} belongs to <b>{{ item.culture }}</b> culture.
+      </div>
+      <div *ngIf="item.born || item.died">
+        {{ item.pronoun }} <span *ngIf="item.born">was born {{ item.born }}</span>{{ item.born && item.died?' and ':'' }}<span *ngIf="item.died">died {{ item.died }}.</span>
+      </div>
+      <div *ngIf="item.aliases.length>0">
+        {{ item.pronoun }} also goes by the alias{{ item.aliases.length>1?'es':'' }} <b>{{ joinArray(item.aliases) }}</b>.
+      </div>
+      <div *ngIf="item.titles.length>0">
+        {{ item.pronoun }} holds the title{{ item.titles.length>1?'s':'' }} <b>{{ joinArray(item.titles) }}</b>.
+      </div>
+      <div *ngIf="item.fatherName || item.motherName">
+        {{ item.pronoun }} is the {{ item.childPronoun }} of {{ item.fatherName ? item.fatherName : '' }}{{ item.motherName ? item.fatherName ? ' & ' + item.motherName : item.motherName : '' }}.
+      </div>
+      <div *ngIf="item.allegianceNames.length>0">
+        {{ item.pronoun }} is loyal to <b>{{ joinArray(item.allegianceNames) }}</b>.
+      </div>
+      <div *ngIf="item.bookNames.length>0">
+        {{ item.pronoun }} is mentioned in the book{{ item.bookNames.length>1?'s':'' }} <b>{{ joinArray(item.bookNames) }}</b>.
+      </div>
+      <div *ngIf="item.tvSeries.length>0">
+        The character was played by <b>{{ joinArray(item.playedBy) }}</b> in the TV series in {{ joinArray(item.tvSeries) }}.
+      </div>
+    </div>
+
+    <div class="details-area" *ngIf="item.type === 'houses'">
+      <div>
+        {{ item.name }} resides in <b>{{ item.region }}</b> region.
+      </div>
+      <div *ngIf="item.founded || item.founderName">
+        This house was founded<span *ngIf="item.founded"> in {{ item.founded }}</span><span *ngIf="item.founderName"> by <b>{{ item.founderName }}</b></span>.
+      </div>
+      <div *ngIf="item.seats.length>0">
+        The seat{{ item.seats>1?'s':'' }} that this house holds <b>{{ item.seats.length>1?'are':'is' }} {{ joinArray(item.seats) }}</b>.
+      </div>
+      <div *ngIf="item.titles.length>0">
+        The title{{ item.titles.length>1?'s':'' }} that this house holds <b>{{ item.seats.length>1?'are':'is' }} {{ joinArray(item.titles) }}</b>.
+      </div>
+      <div *ngIf="item.currentLordName">
+        Current Lord of this house is <b>{{ item.currentLordName }}</b>.
+      </div>
+      <div *ngIf="item.heirName">
+        <b>{{ item.heirName }}</b> is the heir of this house.
+      </div>
+      <div *ngIf="item.overlordName">
+        This house answers to <b>{{ item.overlordName }}</b>.
+      </div>
+      <div *ngIf="item.diedOut">
+        This house died out in {{ item.diedOut }}.
+      </div>
+      <div *ngIf="item.cadetBranches.length>0">
+        There {{ item.cadetBranches.length>1?'are':'is' }} <b>{{ item.cadetBranches.length }} house{{ item.cadetBranches.length>1?'s':'' }}</b> that was founded by this house.
+      </div>
+      <div *ngIf="item.swornMembers.length>0">
+        There {{ item.swornMembers.length>1?'are':'is' }} <b>{{ item.swornMembers.length }} sworn member{{ item.swornMembers.length>1?'s':'' }}</b> of this house.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="w-100 mt-5 text-center text-muted" *ngIf="!item">
+  Loading...
+</div>

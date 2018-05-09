@@ -1,0 +1,61 @@
+.title {
+	font-size: 2rem;
+}
+
+input[type="checkbox"] {
+	margin: 0;
+	padding: 0;
+}
+input[type="checkbox"]:checked + label .check-item {
+	background: hsl(211, 100%, 35%) !important;
+}
+input[type="checkbox"]:checked + label .check-item:hover {
+	background: hsl(211, 100%, 25%) !important;
+}
+.check-item {
+	background: hsl(211, 100%, 60%);
+	cursor: pointer;
+	color: white;
+	transition: all .15s ease-in-out;
+}
+.check-item:hover {
+	background: hsl(211, 100%, 50%);
+}
+
+.card {
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+	position: relative;
+}
+
+.card.b {
+	color: hsl(0, 50%, 50%);
+	border-color: hsl(0, 50%, 50%) !important;
+}
+.card.b:hover {
+	background: hsl(0, 50%, 60%) !important;
+	color: white;
+}
+
+.card.c {
+	color: hsl(240, 50%, 50%);
+	border-color: hsl(240, 50%, 50%) !important;
+}
+.card.c:hover {
+	background: hsl(240, 50%, 60%) !important;
+	color: white;
+}
+
+.card.h {
+	color: hsl(120, 50%, 50%);
+	border-color: hsl(120, 50%, 50%) !important;
+}
+.card.h:hover {
+	background: hsl(120, 50%, 60%) !important;
+	color: white;
+}
+
+@media all and (max-width: 576px) {
+	.title { font-size: 1.5rem; }
+	.check-item { font-size: 0.75rem; }
+}
